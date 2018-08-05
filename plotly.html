@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="myDiv" style="width:100%;height:100%"></div>
+</body>
+<script>
+    x_ = [];
+    y_ = [];
+    z_ = [];
+
+    x__ = [];
+    y__ = [];
+    z__ = [];
+
+    for (var i = 0; i < 500; i++)
+    {
+        var r1 = Math.random();
+        var r2 = Math.random();
+
+        {
+            var x = Math.cos(2*Math.PI*r1) * Math.sqrt(1 - Math.pow(1 - 2*r2, 2));
+            var y = Math.sin(2*Math.PI*r1) * Math.sqrt(1 - Math.pow(1 - 2*r2, 2));
+            var z = 1 - r2;
+
+            x_.push(x);
+            y_.push(y);
+            z_.push(z);
+        }
+        {
+            var x = Math.cos(2*Math.PI*r1) * Math.sin(2*Math.PI*r2);
+            var y = Math.sin(2*Math.PI*r1) * Math.sin(2*Math.PI*r2);
+            var z = Math.cos(2*Math.PI*r2);
+
+            x__.push(x);
+            y__.push(y);
+            z__.push(z);
+        }
+    }
+    var trace1 = {
+        x: x_, y: y_, z: z_,
+        mode: 'markers',
+        marker: {
+            size: 12,
+            line: {
+                color: 'rgba(217, 217, 217, 0.14)',
+                width: 0.5
+            },
+            opacity: 0.2
+        },
+        type: 'scatter3d'
+    };
+
+    var trace2 = {
+        x: x__,  y: y__, z: z__,
+        mode: 'markers',
+        marker: {
+            color: 'rgb(127, 127, 127)',
+            size: 12,
+            symbol: 'circle',
+            line: {
+                color: 'rgb(204, 204, 204)',
+                width:0.2
+            },
+            opacity: 0.3
+        },
+        type: 'scatter3d'
+    };
+
+    var data = [trace1, trace2];
+    var layout = {margin: {
+        l: 0,
+        r: 0,
+        b: 0,
+        t: 0
+    }};
+    Plotly.newPlot('myDiv', data, layout);
+
+</script>
+</html>
