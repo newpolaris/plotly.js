@@ -1,0 +1,1 @@
+Plot random point distribution
