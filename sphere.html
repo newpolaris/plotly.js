@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="js/plotly-latest.min.js" type="text/javascript"></script>
+    <script src="js/gl-matrix.js" type="text/javascript"></script>
+    <script src="sampling.js" type="text/javascript"></script>
+    <script src="util.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="myDiv" style="width:100%;height:100%"></div>
+</body>
+<script>
+    var NumSamples = 1 << 9;
+
+    var trace0 = scatter3d(uniformSampleHemisphere, 'rgba(217, 217, 217, 0.14)', NumSamples) ;
+    var trace1 = scatter3d(cosWeightedSample, 'rgb(204, 204, 204)', NumSamples);
+    var trace2 = scatter3d(cosineSampleHemisphere, 'rgb(4, 104, 204)', NumSamples);
+    var data = [trace0, trace1, trace2];
+    var layout = {margin: {
+        l: 20,
+        r: 20,
+        b: 20,
+        t: 20
+    }};
+    Plotly.newPlot('myDiv', data, layout);
+</script>
+</html>
